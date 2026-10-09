@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>経費精算システム（言い換えテスト）</title>
+  <style>
+    :root { --bg:#f5f6f8; --card:#fff; --text:#1f2328; --muted:#5b636e; --line:#d8dce2; --accent:#1a5fb4; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#16181c; --card:#1f2226; --text:#e6e8eb; --muted:#9aa3ad; --line:#353a41; --accent:#6ea8fe; }
+    }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui, sans-serif; line-height:1.6; }
+    header { background:var(--accent); color:#fff; padding:12px 16px; }
+    header h1 { margin:0; font-size:1.1rem; }
+    main { max-width:820px; margin:0 auto; padding:16px; }
+    .note { font-size:.85rem; color:var(--muted); border:1px dashed var(--line); padding:8px 12px; border-radius:6px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px; margin:16px 0; }
+    .card h2 { font-size:1rem; margin:0 0 8px; }
+    dl { margin:0; font-size:.9rem; }
+    dt { font-weight:600; margin-top:6px; }
+    dd { margin:0 0 0 1em; }
+    .scroll-box { height:160px; overflow:auto; border:1px solid var(--line); border-radius:6px; padding:8px; }
+  </style>
+</head>
+<body>
+  <header><h1>経費精算システム（言い換えテスト）</h1></header>
+  <main>
+    <p class="note">これはブラウザ搭載AIの読み取り範囲を確かめるためのテストページです。記載内容はすべて架空です。</p>
+    <section class="card">
+      <h2>お知らせ</h2>
+      <p>経費申請の締め切りは 毎月17日 15時 です。</p>
+    </section>
+    <section class="card" aria-labelledby="faq">
+      <h2 id="faq">よくある質問</h2>
+      <div id="faq-area" class="scroll-box">読み込み中…</div>
+    </section>
+  </main>
+  <script src="large-common.js"></script>
+  <script>
+    // 正解と、取り違えを誘う似た項目を、300件の中の決まった位置に入れる（キーは 0 始まり）。
+    var special = {
+      20:  ['このアプリの監査ログの保存期間は？', '監査ログの保存期間は 427日 です。'],
+      37:  ['このアプリの操作ログの保存期間は？', '操作ログの保存期間は 95日 です。'],
+      52:  ['このアプリのアクセスログの保存期間は？', 'アクセスログの保存期間は 183日 です。'],
+      88:  ['年間利用ライセンス数は？', '年間利用ライセンス数は 1,284本 です。'],
+      118: ['同時接続ユーザー数の上限は？', '同時接続ユーザー数の上限は 640人 です。'],
+      150: ['国内出張時の日額手当は？', '国内出張時の日額手当は 1日 2,300円 です。'],
+      205: ['海外出張時の日額手当は？', '海外出張時の日額手当は 1日 6,800円 です。'],
+      260: ['提出済み申請の撤回方法は？', '「申請一覧」画面の「引き戻し」ボタンで撤回できます（承認前のみ）。'],
+      299: ['リモート接続時の利用要件は？', 'VPN への接続と、二要素認証の登録が必要です。']
+    };
+    setTimeout(function () {
+      var dl = document.createElement('dl');
+      for (var i = 0; i < 300; i++) {
+        var qa = special[i] || faqFiller(i);
+        var dt = document.createElement('dt'); dt.textContent = 'Q' + (i + 1) + '：' + qa[0];
+        var dd = document.createElement('dd'); dd.textContent = 'A：' + qa[1];
+        dl.appendChild(dt); dl.appendChild(dd);
+      }
+      var area = document.getElementById('faq-area');
+      area.textContent = '';
+      area.appendChild(dl);
+    }, 800);
+  </script>
+</body>
+</html>

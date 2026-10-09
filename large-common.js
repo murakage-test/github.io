@@ -15,6 +15,8 @@
     return ['拠点コード S-' + no + ' の所在地は？', ['名古屋', '大阪', '東京', '福岡', '仙台', '札幌'][i % 6] + '第' + (i % 4 + 1) + '事業所です。'];
   }
 
+  window.faqFiller = filler;
+
   window.renderFaq = function (container, needleQ, needleA) {
     var n = parseInt(new URLSearchParams(location.search).get('n'), 10);
     if (!(n > 0)) n = 300;
